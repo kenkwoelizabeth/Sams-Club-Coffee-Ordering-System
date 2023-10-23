@@ -1,10 +1,13 @@
 package com.techbridge.sams.club.payment;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
+
+@Entity
 public class Payment {
     // fields
 

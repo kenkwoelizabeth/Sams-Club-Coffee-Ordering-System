@@ -1,16 +1,14 @@
 package com.techbridge.sams.club.order;
 
-import com.techbridge.sams.club.menuItem.MenuItem;
+
 import com.techbridge.sams.club.payment.Payment;
-import org.apache.tomcat.jni.Address;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.Date;
-import java.util.List;
 
-
-@Entity
+@Entity(name = "Orders")
 public class Order {
     //fields
 
@@ -44,9 +42,8 @@ public class Order {
     private double total;
 
 
-    @OneToMany(targetEntity = MenuItem.class,
-            fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<MenuItem> menuItems;
+    @OneToMany(targetEntity = MenuItem.class, cascade = CascadeType.ALL)
+    private List menuItems;
 
 
     @OneToOne(targetEntity = Payment.class,
@@ -61,7 +58,7 @@ public class Order {
 
     public Order(String customerFirstName, String customerLastName, String deliveryAddress, String customerPhone,
                  String deliveryOption, String location, Date deliveryDate, Date readyTime, double subTotal,
-                 double tax, double total, List<MenuItem> menuItems, Payment payment) {
+                 double tax, double total, List menuItems, Payment payment) {
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
         this.deliveryAddress = deliveryAddress;
@@ -80,6 +77,14 @@ public class Order {
 
     // getters and setters
 
+
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
+    }
 
     public String getCustomerFirstName() {
         return customerFirstName;
@@ -169,11 +174,11 @@ public class Order {
         this.total = total;
     }
 
-    public List<MenuItem> getMenuItems() {
+    public List getMenuItems() {
         return menuItems;
     }
 
-    public void setMenuItems(List<MenuItem> menuItems) {
+    public void setMenuItems(List menuItems) {
         this.menuItems = menuItems;
     }
 

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.techbridge</groupId>
-	<artifactId>sams-club</artifactId>
+	<artifactId>Coffee-Ordering-System</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Coffee Ordering System</name>
 	<description>Coffee Ordering System</description>

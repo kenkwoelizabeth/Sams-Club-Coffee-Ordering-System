@@ -1,9 +1,11 @@
 package com.techbridge.sams.club.menuItem;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class MenuItem {
     // fields
     @Id
@@ -27,6 +29,15 @@ public class MenuItem {
     }
 
     //getters and setters
+
+
+    public long getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(long menuId) {
+        this.menuId = menuId;
+    }
 
     public String getName() {
         return name;
