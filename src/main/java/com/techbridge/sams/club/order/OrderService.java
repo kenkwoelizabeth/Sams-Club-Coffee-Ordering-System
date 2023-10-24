@@ -14,9 +14,10 @@ public interface OrderService {
 
 
     public Order getOrderById(long orderId);
-    public Order  updateOrder(long orderId, Order order);
 
-    public void deleteOrder(long orderId) ;
+    public Order updateOrder(long orderId, Order order);
+
+    public void deleteOrder(long orderId);
 }
 
 

@@ -1,7 +1,6 @@
 package com.techbridge.sams.club.menuItem;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,19 +29,19 @@ public class MenuItemRestController {
 
     @GetMapping("/menu/{id}")
     public ResponseEntity<MenuItem> getMenuById(@PathVariable(value = "id") long menuId) {
-        MenuItem existingMenu  = menuItemService.getMenuById(menuId);
+        MenuItem existingMenu = menuItemService.getMenuById(menuId);
 
         return ResponseEntity.ok(existingMenu);
     }
 
     @PutMapping("/menu/{id}")
-    public String updateStore(@PathVariable("id") long menuId, @RequestBody MenuItem menuItem) {
+    public String updateMenu(@PathVariable("id") long menuId, @RequestBody MenuItem menuItem) {
         menuItemService.updateMenu(menuId, menuItem);
         return "redirect:/myMenu";
     }
 
     @DeleteMapping("/menus/{id}")
-    public String deleteStore(@PathVariable("id") long menuId) {
+    public String deleteMenu(@PathVariable("id") long menuId) {
         menuItemService.deleteMenu(menuId);
         return "redirect:/menus";
     }

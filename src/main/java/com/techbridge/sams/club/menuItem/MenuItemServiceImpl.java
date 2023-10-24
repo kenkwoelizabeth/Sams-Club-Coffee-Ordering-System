@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MenuItemServiceImpl implements  MenuItemService{
+public class MenuItemServiceImpl implements MenuItemService {
     @Autowired
     private MenuItemRepository menuItemRepository;
 
     @Override
     public MenuItem saveMenu(MenuItem menuItem) {
-       return menuItemRepository.save(menuItem);
+        return menuItemRepository.save(menuItem);
     }
 
     @Override

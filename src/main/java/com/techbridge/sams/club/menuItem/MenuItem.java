@@ -1,9 +1,9 @@
 package com.techbridge.sams.club.menuItem;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import com.techbridge.sams.club.order.Order;
+
+import javax.persistence.*;
 
 @Entity
 public class MenuItem {
@@ -15,18 +15,22 @@ public class MenuItem {
     private double menuPrice;
     private String category;
 
-
+    @ManyToOne(targetEntity = Order.class, fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private Order order;
     // constructor
 
 
     public MenuItem() {
     }
 
-    public MenuItem(String name, double menuPrice, String category) {
+    public MenuItem(String name, double menuPrice, String category, Order order) {
         this.name = name;
         this.menuPrice = menuPrice;
         this.category = category;
+        this.order = order;
     }
+
+
 
     //getters and setters
 
@@ -61,5 +65,13 @@ public class MenuItem {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

@@ -12,10 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan
 public class CoffeeOrderingSystemApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CoffeeOrderingSystemApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(CoffeeOrderingSystemApplication.class, args);
+    }
 
 
 }

@@ -32,13 +32,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order updateOrder(long orderId, Order order) {
-        Order existingOrder=orderRepository.findById(orderId)
-                .orElseThrow(() -> new ResourceNotFoundException ("Order does not exist with the ID: " + orderId));
-       existingOrder.setCustomerFirstName(order.getCustomerFirstName());
-        existingOrder.getCustomerLastName(order.getCustomerLastName());
-        existingOrder.getDeliveryAddress(order.getDeliveryAddress());
-        existingOrder.getCustomerPhone(order.getCustomerPhone());
-        existingOrder.getDeliveryOption(order.getDeliveryOption());
+        Order existingOrder = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order does not exist with the ID: " + orderId));
+        existingOrder.setCustomerFirstName(order.getCustomerFirstName());
+        existingOrder.setCustomerLastName(order.getCustomerLastName());
+        existingOrder.setDeliveryAddress(order.getDeliveryAddress());
+        existingOrder.setCustomerPhone(order.getCustomerPhone());
+        existingOrder.setDeliveryOption(order.getDeliveryOption());
         existingOrder.setLocation(order.getLocation());
         existingOrder.setDeliveryDate(order.getDeliveryDate());
         existingOrder.setReadyTime(order.getReadyTime());
@@ -47,16 +47,13 @@ public class OrderServiceImpl implements OrderService {
         existingOrder.setTotal(order.getTotal());
 
 
-
-
-
         return orderRepository.save(existingOrder);
     }
 
     @Override
     public void deleteOrder(long orderId) {
-        Order existingOrder=orderRepository.findById(orderId)
-                .orElseThrow(() -> new ResourceNotFoundException ("Order does not exist with the ID: " + orderId));
-    orderRepository.delete(existingOrder);
+        Order existingOrder = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order does not exist with the ID: " + orderId));
+        orderRepository.delete(existingOrder);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.awt.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "Orders")
 public class Order {
@@ -27,11 +28,11 @@ public class Order {
 
     private String location;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date deliveryDate;
 
-    @DateTimeFormat(pattern="HH:mm")
+    @DateTimeFormat(pattern = "HH:mm")
     @Temporal(TemporalType.TIME)
     private Date readyTime;
 
@@ -42,12 +43,11 @@ public class Order {
     private double total;
 
 
-    @OneToMany(targetEntity = MenuItem.class, cascade = CascadeType.ALL)
-    private List menuItems;
+
 
 
     @OneToOne(targetEntity = Payment.class,
-    fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+            fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private Payment payment;
 
     //constructors
@@ -58,7 +58,7 @@ public class Order {
 
     public Order(String customerFirstName, String customerLastName, String deliveryAddress, String customerPhone,
                  String deliveryOption, String location, Date deliveryDate, Date readyTime, double subTotal,
-                 double tax, double total, List menuItems, Payment payment) {
+                 double tax, double total, Payment payment) {
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
         this.deliveryAddress = deliveryAddress;
@@ -70,9 +70,10 @@ public class Order {
         this.subTotal = subTotal;
         this.tax = tax;
         this.total = total;
-        this.menuItems = menuItems;
         this.payment = payment;
     }
+
+
 
 
     // getters and setters
@@ -174,13 +175,6 @@ public class Order {
         this.total = total;
     }
 
-    public List getMenuItems() {
-        return menuItems;
-    }
-
-    public void setMenuItems(List menuItems) {
-        this.menuItems = menuItems;
-    }
 
     public Payment getPayment() {
         return payment;

@@ -24,14 +24,14 @@ public class MenuItemController {
     }
 
     @GetMapping("/menu")
-    public String getAllBook(Model model) {
-      model.addAttribute("listMenus", menuItemService.getAllMenu());
-      return "menu/menu_list";
+    public String getAllMenu(Model model) {
+        model.addAttribute("listMenus", menuItemService.getAllMenu());
+        return "menu/menu_list";
     }
 
 
     @GetMapping("/my_menus")
-    public String getMyCars(Model model) {
+    public String getMyMenus(Model model) {
         // create model attribute to bind form data
         MenuItem menu = new MenuItem();
         model.addAttribute("menu", menu);
@@ -40,14 +40,15 @@ public class MenuItemController {
 
     @PostMapping("/saveMenu")
     public String saveMenu(@ModelAttribute("menu") @Valid MenuItem menuItem,
-                           BindingResult bindingResult)  {
+                           BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "car/new_menu";
+            return "menu/new_menu";
         }
-            // save menu to database
-            menuItemService.saveMenu(menuItem);
-            return "redirect:/menu";
-        }
+        // save menu to database
+        menuItemService.saveMenu(menuItem);
+        return "redirect:/menu";
+    }
+
     @GetMapping("/my_menus/{id}")
     public String getMenusById(@PathVariable(value = "id") int menuId, Model model) {
 
@@ -59,11 +60,10 @@ public class MenuItemController {
 
     @GetMapping("/deleteMenu/{id}")
     public String deleteMenu(@PathVariable(value = "id") int menuId) {
-this.menuItemService.deleteMenu(menuId);
+        this.menuItemService.deleteMenu(menuId);
 
         return "redirect:/menu";
     }
-
 
 
 }

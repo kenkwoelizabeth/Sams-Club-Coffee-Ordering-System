@@ -14,7 +14,8 @@ public interface MenuItemService {
 
 
     public MenuItem getMenuById(long menuId);
+
     public MenuItem updateMenu(long MenuId, MenuItem menuItem);
 
-    public void deleteMenu(long menuId) ;
-    }
+    public void deleteMenu(long menuId);
+}
