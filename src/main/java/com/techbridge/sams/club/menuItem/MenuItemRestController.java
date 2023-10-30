@@ -14,7 +14,7 @@ public class MenuItemRestController {
     private MenuItemService menuItemService;
 
 
-    @GetMapping("/menus")
+    @PostMapping("/menus")
     public MenuItem saveMenu(@RequestBody MenuItem menuItem) {
 
         return menuItemService.saveMenu(menuItem);

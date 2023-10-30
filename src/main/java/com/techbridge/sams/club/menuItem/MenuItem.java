@@ -1,7 +1,7 @@
 package com.techbridge.sams.club.menuItem;
 
 
-import com.techbridge.sams.club.order.Order;
+import com.techbridge.sams.club.menuItemOrder.MenuItemOrder;
 
 import javax.persistence.*;
 
@@ -12,27 +12,27 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long menuId;
     private String name;
-    private double menuPrice;
-    private String category;
+    private String description;
+    private double price;
 
-    @ManyToOne(targetEntity = Order.class, fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private Order order;
+    private int quantityAvailable;
+    private String units;
+
+
     // constructor
 
 
     public MenuItem() {
     }
 
-    public MenuItem(String name, double menuPrice, String category, Order order) {
+    public MenuItem(String name, String description, double price, int quantityAvailable, String units) {
         this.name = name;
-        this.menuPrice = menuPrice;
-        this.category = category;
-        this.order = order;
+        this.description = description;
+        this.price = price;
+        this.quantityAvailable = quantityAvailable;
+        this.units = units;
     }
-
-
-
-    //getters and setters
+//getters and setters
 
 
     public long getMenuId() {
@@ -51,27 +51,37 @@ public class MenuItem {
         this.name = name;
     }
 
-    public double getMenuPrice() {
-        return menuPrice;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMenuPrice(double menuPrice) {
-        this.menuPrice = menuPrice;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getCategory() {
-        return category;
+    public double getPrice() {
+        return price;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public Order getOrder() {
-        return order;
+    public int getQuantityAvailable() {
+        return quantityAvailable;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setQuantityAvailable(int quantityAvailable) {
+        this.quantityAvailable = quantityAvailable;
     }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
+    }
+
+
 }

@@ -2,9 +2,11 @@ package com.techbridge.sams.club.menuItem;
 
 
 import com.techbridge.sams.club.exception.ResourceNotFoundException;
+import com.techbridge.sams.club.menuItemOrder.MenuItemOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Service
@@ -35,8 +37,10 @@ public class MenuItemServiceImpl implements MenuItemService {
                 .orElseThrow(() -> new ResourceNotFoundException("Menu does not exist with the ID: " + menuId));
 
         existingMenu.setName(menuItem.getName());
-        existingMenu.setMenuPrice(menuItem.getMenuPrice());
-        existingMenu.setCategory(menuItem.getCategory());
+        existingMenu.setDescription(menuItem.getDescription());
+        existingMenu.setQuantityAvailable(menuItem.getQuantityAvailable());
+        existingMenu.setPrice(menuItem.getPrice());
+        existingMenu.setUnits(menuItem.getUnits());
 
         return menuItemRepository.save(existingMenu);
     }
@@ -48,5 +52,12 @@ public class MenuItemServiceImpl implements MenuItemService {
                 .orElseThrow(() -> new ResourceNotFoundException("Menu does not exist with the ID: " + menuId));
 
         menuItemRepository.delete(existingMenu);
+    }
+
+
+    @Override
+    public List<MenuItem> searchMenuItems(String name) {
+        // Implement the search logic here, e.g., using Spring Data JPA queries
+        return menuItemRepository.findByNameContaining(name);
     }
 }

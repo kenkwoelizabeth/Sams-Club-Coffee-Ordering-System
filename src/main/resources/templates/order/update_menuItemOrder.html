@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.w3.org/1999/xhtml">
-
 <head>
 
     <meta charset="utf-8">
@@ -10,7 +9,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="/css/home.css" type="text/css" rel="stylesheet"/>
 
-    <title>Lizzy Autos</title>
+    <title>Sams Club Group Project</title>
 </head>
 <body>
 
@@ -18,7 +17,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#">Lizzy Autos</a>
+            <a class="navbar-brand text-white" href="#">Sams Club Group Project</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,19 +26,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="/backEndCover">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="car">Cars</a>
+                        <a class="nav-link text-white" href="menu">Menu Items</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="customer">Customers</a>
+                        <a class="nav-link text-white" href="order">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="salesRep">Sales Representatives</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="salesInvoice">Sales Invoices</a>
+                        <a class="nav-link text-white" href="supplier">Suppliers</a>
                     </li>
 
                     <li class="nav-item">
@@ -58,26 +54,31 @@
 
 
 <div class="container">
-    <h1>Car Sales System</h1>
+    <h1>Ordering System Management</h1>
     <hr>
-    <h2>Save Sales Invoice</h2>
+    <h2>Update Order</h2>
 
-    <form action="#" th:action="@{/saveSalesInvoice}" th:object="${salesInvoice}" method="POST">
-        <input type="text" th:field="*{salesInvoiceDate}" placeholder="Invoice Date" class="form-control mb-4 col-4">
-        <div th:if="${#fields.hasErrors('salesInvoiceDate')}" th:errors="*{salesInvoiceDate}">Sales Invoice Date Error
-        </div>
+    <form action="#" th:action="@{/saveMenuItemOrder}" th:object="${order}" method="POST">
 
-        <input type="text" th:field="*{salesInvoiceAmount}" placeholder="Invoice Amount"
-               class="form-control mb-4 col-4">
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{orderId}"/>
+        <input type="number" th:field="*{quantityOrdered}" placeholder="Qty Ordered" class="form-control mb-4 col-4" required>
 
 
-        <button type="submit" class="btn btn-info col-2"> Save Invoice</button>
+
+        <input type="number" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{menuItem}" placeholder="Menu Item" class="form-control mb-4 col-4" required>
+        <input type="date" th:field="*{orderDate}" placeholder="Date" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{completed}" placeholder="Status" class="form-control mb-4 col-4" required>
+
+        <button type="submit" class="btn btn-info col-2"> Update Order</button>
     </form>
 
     <hr>
-    <p><a class="btn btn-outline-success" href="/salesInvoice">
-        <i class="bi bi-arrow-left-square-fill"></i>Back to Invoice List</a>
-    </p></div>
-</body>
 
+    <p><a class="btn btn-outline-success" href="/menuItemOrder">
+        <i class="bi bi-arrow-left-square-fill"></i> Back to Order List</a>
+    </p>
+</div>
+</body>
 </html>

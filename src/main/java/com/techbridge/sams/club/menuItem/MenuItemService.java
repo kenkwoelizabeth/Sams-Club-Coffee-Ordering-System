@@ -18,4 +18,5 @@ public interface MenuItemService {
     public MenuItem updateMenu(long MenuId, MenuItem menuItem);
 
     public void deleteMenu(long menuId);
+    public List<MenuItem> searchMenuItems(String name);
 }

@@ -30,17 +30,15 @@
                         <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="menu">Menus</a>
+                        <a class="nav-link text-white" href="menuItem">Menu Items</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="order">Orders</a>
+                        <a class="nav-link text-white" href="menuItemOrder">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="payment">Payment</a>
+                        <a class="nav-link text-white" href="supplier">Suppliers</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="myOrders">My Orders</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link text-white"  href="users.html"
                            th:href="@{/users}">Users</a>
@@ -65,11 +63,15 @@
 
         <!-- Add hidden form field to handle update -->
         <input type="hidden" th:field="*{menuId}"/>
-        <input type="text" th:field="*{name}" placeholder="Menu Name" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{name}" placeholder="Menu Name" class="form-control mb-4 col-4" required>
 
-        <input type="text" th:field="*{menuPrice}" placeholder="Menu Price" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{description}" placeholder="Description" class="form-control mb-4 col-4" required>
 
-        <input type="text" th:field="*{category}" placeholder="Category" class="form-control mb-4 col-4">
+        <input type="number" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4" required>
+
+        <input type="number" th:field="*{quantityAvailable}" placeholder="Quantity Available" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{units}" placeholder="Units" class="form-control mb-4 col-4" required>
+
 
 
         <button type="submit" class="btn btn-info col-2"> Update Menu</button>

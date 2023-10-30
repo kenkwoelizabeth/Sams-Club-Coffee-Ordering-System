@@ -1,11 +1,10 @@
-package com.techbridge.sams.club.order;
-
+package com.techbridge.sams.club.supplier;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 
 
 }
