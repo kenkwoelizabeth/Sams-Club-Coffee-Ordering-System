@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/cover">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="menuItem">Menu Items</a>
+                        <a class="nav-link text-white" href="menu">Menu Items</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="menuItemOrder">Orders</a>
@@ -42,6 +42,7 @@
                         <a class="nav-link text-white"  href="users.html"
                            th:href="@{/users}">Users</a>
                     </li>
+
                 </ul>
                 <div>
                     <a th:href="@{/logout}" class="btn btn-primary btn-sm mb-3"> Logout </a>
@@ -53,27 +54,28 @@
 
 
 <div class="container">
-    <h1>Car Sales System</h1>
+    <h1>Ordering System Management</h1>
     <hr>
-    <h2>Update Sales Representative</h2>
+    <h2>Save Order</h2>
 
-    <form action="#" th:action="@{/saveSalesRep}" th:object="${salesRep}" method="POST">
+    <form action="#" th:action="@{/saveMenuItemOrder}" th:object="${menuItemOrder}" method="POST">
+        <input type="text" th:field="*{quantityOrdered}" placeholder="Quantity Ordered" class="form-control mb-4 col-4" >
+        <div th:if="${#fields.hasErrors('quantityOrdered')}" th:errors="*{quantityOrdered}">Order Name Error
+        </div>
 
-        <!-- Add hidden form field to handle update -->
-        <input type="hidden" th:field="*{salesRepId}"/>
-        <input type="text" th:field="*{salesRepName}" placeholder="salesRep Name" class="form-control mb-4 col-4">
+        <input type="number" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4" >
+        <input type="text" th:field="*{menuItem}" placeholder="Menu Item" class="form-control mb-4 col-4" >
+        <input type="date" th:field="*{orderDate}" placeholder="Date" class="form-control mb-4 col-4" >
+        <input type="text" th:field="*{completed}" placeholder="Status" class="form-control mb-4 col-4" >
 
-        <input type="text" th:field="*{salesRepContact}" placeholder="salesRep Contact" class="form-control mb-4 col-4">
 
-
-        <button type="submit" class="btn btn-info col-2"> Update Sales Representative</button>
+        <button type="submit" class="btn btn-info col-2"> Save Order</button>
     </form>
 
     <hr>
-
-    <p><a class="btn btn-outline-success" href="/salesRep">
-        <i class="bi bi-arrow-left-square-fill"></i> Back to Sales Representative List</a>
-    </p>
-</div>
+    <p><a class="btn btn-outline-success" href="/menuItemOrder">
+        <i class="bi bi-arrow-left-square-fill"></i>Back to Order List</a>
+    </p></div>
 </body>
+
 </html>

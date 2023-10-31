@@ -23,7 +23,7 @@ public class MenuItemOrderController {
     @GetMapping("/menuItemOrder")
     public String getAllMenuItemOrder(Model model) {
         model.addAttribute("listMenuItemOrders", menuItemOrderService.getAllMenuItemOrder());
-        return "order/menuItemOrder_list";
+        return "menuItemOrder/menuItemOrder_list";
     }
 
 
@@ -32,14 +32,14 @@ public class MenuItemOrderController {
         // create model attribute to bind form data
       MenuItemOrder menuItemOrder  = new MenuItemOrder();
         model.addAttribute("menuItemOrder", menuItemOrder);
-        return "order/new_menuItemOrder";
+        return "menuItemOrder/new_menuItemOrder";
     }
 
     @PostMapping("/saveMenuItemOrder")
     public String saveMenuItemOrder(@ModelAttribute("menuItemOrder") @Valid MenuItemOrder menuItemOrder ,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "order/new_menuItemOrder";
+            return "menuItemOrder/new_menuItemOrder";
         }
         // save menu to database
         menuItemOrderService.saveMenuItemOrder(menuItemOrder);
@@ -47,16 +47,16 @@ public class MenuItemOrderController {
     }
 
     @GetMapping("/my_menuItemOrders/{id}")
-    public String getMenuItemOrdersById(@PathVariable(value = "id") int orderId, Model model) {
+    public String getMenuItemOrdersById(@PathVariable(value = "id") long orderId, Model model) {
 
         MenuItemOrder menuItemOrder = menuItemOrderService.getMenuItemOrderById(orderId);
         model.addAttribute("menuItemOrder", menuItemOrder);
 
-        return "order/update_menuItemOrder";
+        return "menuItemOrder/update_menuItemOrder";
     }
 
     @GetMapping("/deleteMenuItemOrder/{id}")
-    public String deleteMenuItemOrder(@PathVariable(value = "id") int orderId) {
+    public String deleteMenuItemOrder(@PathVariable(value = "id") long orderId) {
         this.menuItemOrderService.deleteMenuItemOrder(orderId);
 
         return "redirect:/menuItemOrder";

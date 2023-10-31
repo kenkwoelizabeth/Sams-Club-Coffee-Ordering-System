@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "suppliers")
 public class Supplier {
     // fields
 
@@ -33,7 +32,7 @@ public class Supplier {
 //getters and setters
 
 
-    public long getSuppliersId() {
+    public long getSupplierId() {
         return supplierId;
     }
 

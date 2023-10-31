@@ -27,10 +27,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/cover">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="menuItem">Menu Items</a>
+                        <a class="nav-link text-white" href="menu">Menu Items</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="menuItemOrder">Orders</a>
@@ -63,14 +63,14 @@
 
         <!-- Add hidden form field to handle update -->
         <input type="hidden" th:field="*{menuId}"/>
-        <input type="text" th:field="*{name}" placeholder="Menu Name" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{name}" placeholder="Menu Name" class="form-control mb-4 col-4" >
 
-        <input type="text" th:field="*{description}" placeholder="Description" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{description}" placeholder="Description" class="form-control mb-4 col-4" >
 
-        <input type="number" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4" >
 
-        <input type="number" th:field="*{quantityAvailable}" placeholder="Quantity Available" class="form-control mb-4 col-4" required>
-        <input type="text" th:field="*{units}" placeholder="Units" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{quantityAvailable}" placeholder="Quantity Available" class="form-control mb-4 col-4" >
+        <input type="text" th:field="*{units}" placeholder="Units" class="form-control mb-4 col-4" >
 
 
 

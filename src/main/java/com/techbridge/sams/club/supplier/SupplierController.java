@@ -32,7 +32,7 @@ public class SupplierController {
         return "supplier/new_supplier";
     }
 
-    @PostMapping("/savePayment")
+    @PostMapping("/saveSupplier")
     public String saveSupplier(@ModelAttribute("supplier") @Valid Supplier supplier,
                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

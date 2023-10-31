@@ -21,6 +21,13 @@ public class MenuItemController {
         return "home";
     }
 
+
+    @GetMapping("/cover")
+    public String coverPage(Model model) {
+
+        return "cover";
+    }
+
     @GetMapping("/menu")
     public String getAllMenu(Model model) {
         model.addAttribute("listMenus", menuItemService.getAllMenu());
@@ -48,7 +55,7 @@ public class MenuItemController {
     }
 
     @GetMapping("/my_menus/{id}")
-    public String getMenusById(@PathVariable(value = "id") int menuId, Model model) {
+    public String getMenusById(@PathVariable(value = "id") long menuId, Model model) {
 
         MenuItem menu = menuItemService.getMenuById(menuId);
         model.addAttribute("menu", menu);
@@ -57,7 +64,7 @@ public class MenuItemController {
     }
 
     @GetMapping("/deleteMenu/{id}")
-    public String deleteMenu(@PathVariable(value = "id") int menuId) {
+    public String deleteMenu(@PathVariable(value = "id") long menuId) {
         this.menuItemService.deleteMenu(menuId);
 
         return "redirect:/menu";

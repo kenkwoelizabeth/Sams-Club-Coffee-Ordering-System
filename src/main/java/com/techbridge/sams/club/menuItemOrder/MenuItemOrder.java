@@ -7,6 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.awt.*;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,10 +26,9 @@ public class MenuItemOrder {
     private int quantityOrdered;
 
 
-    @DateTimeFormat(pattern = "MM-dd-yyyy")
-    private Date orderDate;
-    private boolean completed;
 
+    private LocalDateTime orderDate;
+    private boolean completed;
 
 
 
@@ -37,13 +38,14 @@ public class MenuItemOrder {
     public MenuItemOrder() {
     }
 
-    public MenuItemOrder(String menuItem, double price, int quantityOrdered, Date orderDate, boolean completed) {
+    public MenuItemOrder(String menuItem, double price, int quantityOrdered, LocalDateTime orderDate, boolean completed) {
         this.menuItem = menuItem;
         this.price = price;
         this.quantityOrdered = quantityOrdered;
         this.orderDate = orderDate;
         this.completed = completed;
     }
+
 
     // getters and setters
 
@@ -80,11 +82,11 @@ public class MenuItemOrder {
         this.quantityOrdered = quantityOrdered;
     }
 
-    public Date getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 

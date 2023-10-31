@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/cover">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="menuItem">Menu Items</a>
+                        <a class="nav-link text-white" href="menu">Menu Items</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="menuItemOrder">Orders</a>
@@ -42,7 +42,6 @@
                         <a class="nav-link text-white"  href="users.html"
                            th:href="@{/users}">Users</a>
                     </li>
-
                 </ul>
                 <div>
                     <a th:href="@{/logout}" class="btn btn-primary btn-sm mb-3"> Logout </a>
@@ -52,49 +51,30 @@
     </nav>
 </header>
 
-<div class="container my-2">
-    <h1>Menu Item Order List</h1>
 
-    <a th:href="@{/my_menuItemOrders}" class="btn btn-primary btn-sm mb-3"> Add Ordered Menu Item </a>
+<div class="container">
+    <h1>Coffee Ordering System</h1>
+    <hr>
+    <h2>Update Supplier List</h2>
 
+    <form action="#" th:action="@{/saveSupplier}" th:object="${supplier}" method="POST">
 
-    <table class="table table-striped table-responsive-md">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Menu Item</th>
-            <th>Price</th>
-            <th>Qty Ordered</th>
-            <th>Date</th>
-            <th>Completed</th>
-            <th> Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="menuItemOrder: ${listMenuItemOrders}">
-            <td th:text="${menuItemOrder.menuItem}"></td>
-            <td th:text="${menuItemOrder.price}"></td>
-            <td th:text="${menuItemOrder.quantityOrdered}"></td>
-            <td th:text="${menuItemOrder.orderDate}"></td>
-            <td th:text="${menuItemOrder.completed}"></td>
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{supplierId}"/>
+        <input type="text" th:field="*{name}" placeholder="Supplier Name" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{location}" placeholder="Supplier Location" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{phoneNumber}" placeholder="Supplier Phone Number" class="form-control mb-4 col-4">
 
 
-            <td><a th:href="@{/my_menuItemOrder/{id}(id=${menuItemOrder.orderId})}"
-                   class="btn btn-primary">Edit</a>
-                <a th:href="@{/deleteMenuItemOrder/{id}(id=${menuItemOrder.orderId})}"
-                   class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <button type="submit" class="btn btn-info col-2"> Update Supplier</button>
+    </form>
+
+    <hr>
+
+    <p><a class="btn btn-outline-success" href="/salesRep">
+        <i class="bi bi-arrow-left-square-fill"></i> Back to Supplier List</a>
+    </p>
 </div>
-
-<div class="container my-2">
-    <a th:href="@{/logout}" class="btn btn-primary btn-sm mb-3"> Log out </a>
-</div>
-
-<script th:src="@{/webjars/bootstrap/5.2.2/js/bootstrap.min.js}"></script>
-
 </body>
-
 </html>

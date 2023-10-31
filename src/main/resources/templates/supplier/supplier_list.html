@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/cover">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="menuItem">Menu Items</a>
+                        <a class="nav-link text-white" href="menu">Menu Items</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="menuItemOrder">Orders</a>
@@ -53,29 +53,43 @@
 </header>
 
 
-<div class="container">
-    <h1>Ordering System Management</h1>
-    <hr>
-    <h2>Save Order</h2>
+<div class="container my-2">
+    <h1>Supplier List</h1>
 
-    <form action="#" th:action="@{/saveMenuItemOrder}" th:object="${menuItemOrder}" method="POST">
-        <input type="text" th:field="*{quantityOrdered}" placeholder="Quantity Ordered" class="form-control mb-4 col-4" required>
-        <div th:if="${#fields.hasErrors('quantityOrdered')}" th:errors="*{quantityOrdered}">Order Name Error
-        </div>
-
-        <input type="number" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4" required>
-        <input type="text" th:field="*{menuItem}" placeholder="Menu Item" class="form-control mb-4 col-4" required>
-        <input type="date" th:field="*{orderDate}" placeholder="Date" class="form-control mb-4 col-4" required>
-        <input type="text" th:field="*{completed}" placeholder="Status" class="form-control mb-4 col-4" required>
+    <a th:href="@{/my_suppliers}" class="btn btn-primary btn-sm mb-3"> Add Supplier </a>
 
 
-        <button type="submit" class="btn btn-info col-2"> Save Order</button>
-    </form>
+    <table class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Phone Number</th>
+            <th> Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="supplier: ${listSuppliers}">
+            <td th:text="${supplier.supplierId}"></td>
+            <td th:text="${supplier.name}"></td>
+            <td th:text="${supplier.location}"></td>
+            <td th:text="${supplier.phoneNumber}"></td>
+            <td><a th:href="@{/my_suppliers/{id}(id=${supplier.supplierId})}"
+                   class="btn btn-primary">Edit</a>
+                <a th:href="@{/deleteSupplier/{id}(id=${supplier.supplierId})}"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
-    <hr>
-    <p><a class="btn btn-outline-success" href="/menuItemOrder">
-        <i class="bi bi-arrow-left-square-fill"></i>Back to Order List</a>
-    </p></div>
+<div class="container my-2">
+    <a th:href="@{/logout}" class="btn btn-primary btn-sm mb-3"> Log out </a>
+</div>
+
+<script th:src="@{/webjars/bootstrap/5.2.2/js/bootstrap.min.js}"></script>
+
 </body>
-
 </html>
