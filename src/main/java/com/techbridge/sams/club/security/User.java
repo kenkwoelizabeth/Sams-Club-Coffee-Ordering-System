@@ -98,7 +98,6 @@ public class User {
 
     public Set<Role> getRoleSet() {
         return roleSet;
-
     }
 
     public void setRoleSet(Set<Role> roleSet) {

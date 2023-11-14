@@ -2,7 +2,6 @@ package com.techbridge.sams.club.user;
 
 
 import com.techbridge.sams.club.security.User;
-import com.techbridge.sams.club.security.Role;
 import com.techbridge.sams.club.security.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -30,29 +28,41 @@ public class UserController {
     @GetMapping("/users")
     public String getAll(Model model) {
         model.addAttribute("listUsers", userService.getAllUsers());
-        List<User> allUsers = userService.getAllUsers();
-        for (User user : allUsers) {
-            for (Role role : user.getRoleSet()) {
-                System.out.println(" print out here" + role.getName());
-
-            }
-
-        }
-
         return "users";
     }
 
+//    @GetMapping("/showNewUserForm")
+//    public String showNewForm(Model model) {
+//        // create model attribute to bind form data
+//        User user = new User();
+//        model.addAttribute("user", user);
+//        return "new_user";
+//    }
+
+//    @PostMapping("/saveUser")
+//    public String save(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+//        System.out.println("user controller saveUser, user id: " + user.getId() + " first name: " + user.getFirstName());
+//        System.out.println("user controller saveUser, user id: " + user.getId() + " role: " + user.getRoleSet());
+//
+//        if(bindingResult.hasErrors()) {
+//            user.setFirstName("error");
+//            return "new_user";
+//        }
+//        // save user to database
+//        userService.saveUser(user);
+//        return "redirect:/users";
+//    }
 
     @PostMapping("/saveUser/{id}")
     public String registerUserAccount(@PathVariable(value = "id") long id,
                                       @ModelAttribute("user") @Valid User user,
-                                      BindingResult result) {
+                                      BindingResult result){
 
         Logger logger = LoggerFactory.getLogger(UserController.class);
 
 //        User existing = userService.findByEmail(userDto.getEmail());
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()){
             return "redirect:/users";
         }
 
@@ -79,13 +89,4 @@ public class UserController {
         this.userService.deleteUserById(id);
         return "redirect:/users";
     }
-
-    @GetMapping("/updateRole/{id}")
-    public String updateRole(@PathVariable(value = "id") long id) {
-        // call delete user method
-        this.userService.updateRole(id);
-        return "redirect:/users";
-    }
-
-
 }
