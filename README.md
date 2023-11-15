@@ -3,4 +3,5 @@
 
 
 ERP Diagram
+
 ![ERP diagram](https://github.com/kenkwoelizabeth/Sams-Club-Coffee-Ordering-System/assets/46757955/916e8ad2-33f3-4fe3-af5d-8f6bfb50bf49)
